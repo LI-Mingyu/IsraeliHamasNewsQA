@@ -6,14 +6,14 @@ import logging
 from redis import Redis
 from redis.commands.search.query import Query
 import os
-from datetime import date
+from datetime import date, datetime, timedelta
 
 # Define a function to get the session id and the remote ip 
 # Caution: this function is implemented in a hacky way and may break in the future
 from streamlit import runtime
 from streamlit.runtime.scriptrunner import get_script_run_ctx
 
-GPT_MODEL = "gpt-3.5-turbo-16k"
+GPT_MODEL = "gpt-4"
 VECTOR_DIM = 1536 
 DISTANCE_METRIC = "COSINE"  
 INDEX_NAME = "IsraelHamasNewsOnline"
@@ -29,6 +29,7 @@ def get_session_info():
         if session_info is None:
             return {'session_id': 'unknown', 'remote_ip': 'unknown'}
     except Exception as e:
+        logging.error(f"Error getting session info: {e}")
         return {'session_id': 'unknown', 'remote_ip': 'unknown'}
     return {'session_id': ctx.session_id, 'remote_ip': session_info.request.remote_ip}
 
@@ -46,24 +47,37 @@ logger = SessionInfoAdapter(logging.getLogger(), session_info)
 
 # The streamlit script starts here
 logger.info("Starting Streamlit script ...")
-st.set_page_config(
-    page_title="💥一个关注巴以局势的AI",
-    page_icon="",
-)
-# st.subheader("💥巴以局势动态")
-st.write("""
-    我是一个关注巴以局势的AI，我的信息来源是**微软Bing**新闻搜索。
-    我会每三小时根据互联网上的消息分析巴以冲突的最新形势，欢迎向我提问或和我讨论。
-    
-    我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com
-""")
-    
+
 # Prepare to connect to Redis
 redis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set
 redis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set
 redis_db = os.getenv('REDIS_DB', '0')  # default to '1' if not set. RediSearch only operates on the default (0) db
  # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors
 r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)
+# 查找最新的消息
+query_latest = Query("*").sort_by("timeStamp", asc=False).return_fields("datePublished").paging(0, 1)  #paging(0, 1)限制返回一条记录
+try:
+    latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]
+    latest_date = datetime.strptime(latest_search_result.datePublished[:-2]+"Z", '%Y-%m-%dT%H:%M:%S.%fZ')
+    latest_date = latest_date + timedelta(hours=8) # Convert to Beijing time
+    latest_date = latest_date.strftime("%Y-%m-%d %H:%M")
+except Exception as e:
+    logger.error(f"Error querying Reids: {e}")
+    st.error("无法从数据库中获取数据，这很可能是系统故障导致，请联系我的主人。")
+    st.stop()
+n_docs_in_index = r.ft(INDEX_NAME).info()["num_docs"]
+
+st.set_page_config(
+    page_title="一个关注巴以局势的AI",
+    page_icon="💥",
+)
+# st.subheader("巴以动态全知道")
+st.write(f"""
+    我是一个关注巴以局势的AI，我的信息来源是**微软Bing**新闻搜索，欢迎向我提问或和我讨论。
+    我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间{latest_date}。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
+    
+    我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com
+""")
 
 if "messages" not in st.session_state.keys():
     # Initialize the session_state.messages
@@ -93,8 +107,9 @@ if user_prompt := st.chat_input('在此输入您的问题'):
     with st.chat_message("assistant"):
         with st.spinner("人工智能正在思考..."):
             QUERY_GEN_PROMPT = f"""
-Generate a brief query based on the chat history. This query will be used to search the answer to the user's question.
-Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to include the date in the query.
+Generate a brief query based on the chat history given the backdrop of recent Israeli-Hamas conflict began on Oct. 7, 2023.
+This query will be used to search the answer to the user's question.
+Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to include dates in the query.
 """
             st.session_state.messages.append({"role": "system", "content": QUERY_GEN_PROMPT})
             try:
