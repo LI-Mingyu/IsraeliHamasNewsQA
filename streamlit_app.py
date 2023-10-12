@@ -18,13 +18,23 @@ VECTOR_DIM = 1536
 DISTANCE_METRIC = "COSINE"  
 INDEX_NAME = "IsraelHamasNewsOnline"
 
+TOPIC = "以色列 哈马斯 冲突 伤亡 巴勒斯坦 中东 2023 Israel Hamas conflict casualties Palestinian Middle East"
+def topic_correlation(query, topic=TOPIC):
+    """Calculate the correlation between the query and the topic."""
+    try:
+        query_embedding = openai.Embedding.create(input=query, model="text-embedding-ada-002")["data"][0]["embedding"]
+        topic_embedding = openai.Embedding.create(input=topic, model="text-embedding-ada-002")["data"][0]["embedding"]
+        return np.dot(query_embedding, topic_embedding)
+    except Exception as e:
+        logging.error(f"Error calculating correlation: {e}")
+        return 0
+
 def get_session_info():
     """Get the session id and the remote ip."""
     try:
         ctx = get_script_run_ctx()
         if ctx is None:
             return {'session_id': 'unknown', 'remote_ip': 'unknown'}
-
         session_info = runtime.get_instance().get_client(ctx.session_id)
         if session_info is None:
             return {'session_id': 'unknown', 'remote_ip': 'unknown'}
@@ -100,7 +110,11 @@ else:
 
 # User-provided prompt
 if user_prompt := st.chat_input('在此输入您的问题'):
-    logger.info(f"User's prompt: {user_prompt}")
+    user_prompt_topic_corr = topic_correlation(user_prompt)
+    if user_prompt_topic_corr < 0.75:
+        logger.warning(f"User's prompt seems irrelevant to the topic: ({user_prompt_topic_corr}){user_prompt}")
+    else:
+        logger.info(f"User's prompt: ({user_prompt_topic_corr}){user_prompt}")
     with st.chat_message("user"):
         st.write(user_prompt)
         st.session_state.messages.append({"role": "user", "content": user_prompt})
@@ -164,7 +178,7 @@ Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to inc
                         collected_resp_content += chunk['choices'][0]['delta']['content']
                         resp_display.write(collected_resp_content)
                 # Count how many answeres are generated
-                r.incr("n_answered")
+                r.incr("IsraelHamasNewsOnline:n_answered")
             except Exception as e:
                 logger.error(f"Error generating response from OpenAI: {e}")
                 st.error('AI没有响应，可能是因为我们正在经历访问高峰，请稍后刷新页面重试。如果问题仍然存在，请联系我的主人。')
