@@ -84,7 +84,8 @@ st.set_page_config(
 # st.subheader("巴以动态全知道")
 st.write(f"""
     我是一个关注巴以局势的AI，我的信息来源是**微软Bing**新闻搜索，欢迎向我提问或和我讨论。
-    我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间{latest_date}。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
+
+    我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
     
     我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com
 """)
@@ -163,7 +164,7 @@ Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to inc
     SEARCH_RESULTS: {formatted_result}
 
     Today is {date.today().strftime("%A, %B %d, %Y")}. You can use this date to filter the search results according to the user's question.
-    Include as much information as possible in the answer. List the reference search result URLs at the end of your answer.
+    Include as much information as possible in the answer. List 2 to 5 most relevant reference search result URLs at the end of your answer.
     """}
             try:
                 gpt_response = openai.ChatCompletion.create(
