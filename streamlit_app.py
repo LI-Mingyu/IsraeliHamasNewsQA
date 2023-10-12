@@ -61,7 +61,7 @@ logger.info("Starting Streamlit script ...")
 # Prepare to connect to Redis
 redis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set
 redis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set
-redis_db = os.getenv('REDIS_DB', '0')  # default to '1' if not set. RediSearch only operates on the default (0) db
+redis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db
  # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors
 r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)
 # 查找最新的消息

@@ -18,6 +18,7 @@ import time
 from datetime import datetime, date
 from typing import List
 import logging
+import os
 
 search_api_key = "1fbee2d36be54eaf884c33e9f1728d0e"
 search_endpoint="https://api.bing.microsoft.com/v7.0/news/search"
@@ -119,8 +120,12 @@ for i, query in enumerate(queries):
 articles = list({article["url"]: article for article in articles}.values())
 logging.info(f"{len(articles)} articles after deduplication.")
 
-# Create search index
-r = Redis(host='localhost', port=6379, db=0) # Explicitly use the default parameters for clarity
+# Prepare to connect to Redis
+redis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set
+redis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set
+redis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db
+ # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors
+r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)
 # define RediSearch vector fields to use FLAT index
 embedding = VectorField("embedding",
     "FLAT", {
