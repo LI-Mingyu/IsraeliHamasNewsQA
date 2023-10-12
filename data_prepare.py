@@ -20,11 +20,18 @@ from typing import List
 import logging
 import os
 
-search_api_key = "1fbee2d36be54eaf884c33e9f1728d0e"
+search_api_key = os.getenv("BING_SEARCH_API_KEY")
+if not search_api_key:
+    logging.error("BING_SEARCH_API_KEY is not set.")
 search_endpoint="https://api.bing.microsoft.com/v7.0/news/search"
 mkt = 'zh-CN'
 
-openai.api_key = "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"
+# Prepare the api_key to call OpenAI
+openai_api_key = os.getenv("OPENAI_API_KEY")
+if not openai_api_key:
+    logging.error("OPENAI_API_KEY is not set.")
+else:
+    openai.api_key = openai_api_key
 GPT_MODEL = "gpt-4"
 
 INDEX_NAME = "IsraelHamasNewsOnline"
