@@ -12,13 +12,16 @@ from datetime import date, datetime, timedelta
 # Caution: this function is implemented in a hacky way and may break in the future
 from streamlit import runtime
 from streamlit.runtime.scriptrunner import get_script_run_ctx
+from streamlit_app import TOPIC
 
 GPT_MODEL = "gpt-4"
 VECTOR_DIM = 1536 
 DISTANCE_METRIC = "COSINE"  
-INDEX_NAME = "IsraelHamasNewsOnline"
+# INDEX_NAME = "IsraelHamasNewsOnline"
+INDEX_NAME = "IranNewsOnline"
 
-TOPIC = "以色列 哈马斯 冲突 伤亡 巴勒斯坦 中东 2023 Israel Hamas conflict casualties Palestinian Middle East"
+# TOPIC = "以色列 哈马斯 冲突 伤亡 巴勒斯坦 中东 2023 Israel Hamas conflict casualties Palestinian Middle East"
+TOPIC = "伊朗 Iran"
 def topic_correlation(query, topic=TOPIC):
     """Calculate the correlation between the query and the topic."""
     try:
@@ -78,12 +81,21 @@ except Exception as e:
 n_docs_in_index = r.ft(INDEX_NAME).info()["num_docs"]
 
 st.set_page_config(
-    page_title="一个关注巴以局势的AI",
+    # page_title="一个关注巴以局势的AI",
+    page_title="一个关注伊朗局势的AI",
     page_icon="💥",
 )
-# st.subheader("巴以动态全知道")
+# st.subheader("巴以动态全知道")  # 源码已经注释了
+
+# st.write(f"""
+#     我是一个关注巴以局势的AI，我的信息来源是**微软Bing**新闻搜索，欢迎向我提问或和我讨论。
+
+#     我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
+    
+#     我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com
+# """)
 st.write(f"""
-    我是一个关注巴以局势的AI，我的信息来源是**微软Bing**新闻搜索，欢迎向我提问或和我讨论。
+    我是一个关注伊朗局势的AI，我的信息来源是**NewsAPI**新闻搜索，欢迎向我提问或和我讨论。
 
     我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
     
@@ -92,7 +104,8 @@ st.write(f"""
 
 if "messages" not in st.session_state.keys():
     # Initialize the session_state.messages
-    st.session_state.messages = [{"role": "system", "content": "You are an AI assistant with knowledge about Israel-Palestine situation."}]
+    # st.session_state.messages = [{"role": "system", "content": "You are an AI assistant with knowledge about Israel-Palestine situation."}]
+    st.session_state.messages = [{"role": "system", "content": "You are an AI assistant with knowledge about Iran situation."}]
 else: # Since streamlit script is executed every time a widget is changed, this "else" is not necessary, but improves readability
     # Display chat messages
     for message in st.session_state.messages:
@@ -121,14 +134,20 @@ if user_prompt := st.chat_input('在此输入您的问题'):
         st.session_state.messages.append({"role": "user", "content": user_prompt})
     with st.chat_message("assistant"):
         with st.spinner("人工智能正在思考..."):
+#             QUERY_GEN_PROMPT = f"""
+# Generate a brief query based on the chat history given the backdrop of recent Israeli-Hamas conflict began on Oct. 7, 2023.
+# This query will be used to search the answer to the user's question.
+# Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to include dates in the query.
+# """
             QUERY_GEN_PROMPT = f"""
-Generate a brief query based on the chat history given the backdrop of recent Israeli-Hamas conflict began on Oct. 7, 2023.
+Generate a brief query based on the chat history given the backdrop of recent Iran began on Oct. 7, 2023.
 This query will be used to search the answer to the user's question.
 Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to include dates in the query.
 """
             st.session_state.messages.append({"role": "system", "content": QUERY_GEN_PROMPT})
             try:
-                r.incr("IsraelHamasNewsOnline:n_asked") # Count how many questions are asked
+                # r.incr("IsraelHamasNewsOnline:n_asked") # Count how many questions are asked
+                r.incr("IranNewsOnline:n_asked") # Count how many questions are asked
                 gpt_response = openai.ChatCompletion.create(
                         model=GPT_MODEL,
                         messages=st.session_state.messages,
@@ -179,7 +198,8 @@ Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to inc
                         collected_resp_content += chunk['choices'][0]['delta']['content']
                         resp_display.write(collected_resp_content)
                 # Count how many answeres are generated
-                r.incr("IsraelHamasNewsOnline:n_answered")
+                # r.incr("IsraelHamasNewsOnline:n_answered")
+                r.incr("IranNewsOnline:n_answered")
             except Exception as e:
                 logger.error(f"Error generating response from OpenAI: {e}")
                 st.error('AI没有响应，可能是因为我们正在经历访问高峰，请稍后刷新页面重试。如果问题仍然存在，请联系我的主人。')
