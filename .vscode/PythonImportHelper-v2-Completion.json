@@ -1,0 +1,606 @@
+[
+    {
+        "label": "openai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "openai",
+        "description": "openai",
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "Redis",
+        "importPath": "redis",
+        "description": "redis",
+        "isExtraImport": true,
+        "detail": "redis",
+        "documentation": {}
+    },
+    {
+        "label": "Redis",
+        "importPath": "redis",
+        "description": "redis",
+        "isExtraImport": true,
+        "detail": "redis",
+        "documentation": {}
+    },
+    {
+        "label": "Query",
+        "importPath": "redis.commands.search.query",
+        "description": "redis.commands.search.query",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.query",
+        "documentation": {}
+    },
+    {
+        "label": "Query",
+        "importPath": "redis.commands.search.query",
+        "description": "redis.commands.search.query",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.query",
+        "documentation": {}
+    },
+    {
+        "label": "TextField",
+        "importPath": "redis.commands.search.field",
+        "description": "redis.commands.search.field",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.field",
+        "documentation": {}
+    },
+    {
+        "label": "VectorField",
+        "importPath": "redis.commands.search.field",
+        "description": "redis.commands.search.field",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.field",
+        "documentation": {}
+    },
+    {
+        "label": "NumericField",
+        "importPath": "redis.commands.search.field",
+        "description": "redis.commands.search.field",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.field",
+        "documentation": {}
+    },
+    {
+        "label": "IndexDefinition",
+        "importPath": "redis.commands.search.indexDefinition",
+        "description": "redis.commands.search.indexDefinition",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.indexDefinition",
+        "documentation": {}
+    },
+    {
+        "label": "IndexType",
+        "importPath": "redis.commands.search.indexDefinition",
+        "description": "redis.commands.search.indexDefinition",
+        "isExtraImport": true,
+        "detail": "redis.commands.search.indexDefinition",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "streamlit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "runtime",
+        "importPath": "streamlit",
+        "description": "streamlit",
+        "isExtraImport": true,
+        "detail": "streamlit",
+        "documentation": {}
+    },
+    {
+        "label": "tiktoken",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tiktoken",
+        "description": "tiktoken",
+        "detail": "tiktoken",
+        "documentation": {}
+    },
+    {
+        "label": "get_script_run_ctx",
+        "importPath": "streamlit.runtime.scriptrunner",
+        "description": "streamlit.runtime.scriptrunner",
+        "isExtraImport": true,
+        "detail": "streamlit.runtime.scriptrunner",
+        "documentation": {}
+    },
+    {
+        "label": "json_gpt",
+        "kind": 2,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "def json_gpt(input: str):\n    completion = openai.ChatCompletion.create(\n        model=GPT_MODEL,\n        messages=[\n            {\"role\": \"system\", \"content\": \"Output only valid JSON\"},\n            {\"role\": \"user\", \"content\": input},\n        ],\n        temperature=0.5,\n    )\n    text = completion.choices[0].message.content",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "embeddings",
+        "kind": 2,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "def embeddings(input: List[str]) -> List[List[str]]:\n    response = openai.Embedding.create(model=\"text-embedding-ada-002\", input=input)\n    return [data.embedding for data in response.data]\n# Set up logging\nlogging.basicConfig(level=logging.INFO,\n                    format='%(asctime)s - %(levelname)s - %(message)s',\n                    datefmt='%Y-%m-%d %H:%M:%S')\n## The data preparing scripts begins here ##\n# As default we use fixed search queries which are human edited, \n# the queries can also be generated by GPT with the following pompt and function.",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "newsapi_key",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "newsapi_key = os.getenv(\"NEWSAPI_KEY\")\nif not newsapi_key:\n    logging.error(\"NEWSAPI_KEY is not set.\")\nnewsapi_endpoint = \"https://newsapi.org/v2/everything\"\nlanguage = 'zh'\n# Prepare the api_key to call OpenAI\nopenai_api_key = os.getenv(\"OPENAI_API_KEY\")\nif not openai_api_key:\n    logging.error(\"OPENAI_API_KEY is not set.\")\nelse:",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "newsapi_endpoint",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "newsapi_endpoint = \"https://newsapi.org/v2/everything\"\nlanguage = 'zh'\n# Prepare the api_key to call OpenAI\nopenai_api_key = os.getenv(\"OPENAI_API_KEY\")\nif not openai_api_key:\n    logging.error(\"OPENAI_API_KEY is not set.\")\nelse:\n    openai.api_key = openai_api_key\nGPT_MODEL = \"gpt-4\"\nINDEX_NAME = \"IranNewsOnline\"",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "language",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "language = 'zh'\n# Prepare the api_key to call OpenAI\nopenai_api_key = os.getenv(\"OPENAI_API_KEY\")\nif not openai_api_key:\n    logging.error(\"OPENAI_API_KEY is not set.\")\nelse:\n    openai.api_key = openai_api_key\nGPT_MODEL = \"gpt-4\"\nINDEX_NAME = \"IranNewsOnline\"\nVECTOR_DIM = 1536 ",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "openai_api_key",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "openai_api_key = os.getenv(\"OPENAI_API_KEY\")\nif not openai_api_key:\n    logging.error(\"OPENAI_API_KEY is not set.\")\nelse:\n    openai.api_key = openai_api_key\nGPT_MODEL = \"gpt-4\"\nINDEX_NAME = \"IranNewsOnline\"\nVECTOR_DIM = 1536 \nDISTANCE_METRIC = \"COSINE\"   \n# Helper functions",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "GPT_MODEL",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "GPT_MODEL = \"gpt-4\"\nINDEX_NAME = \"IranNewsOnline\"\nVECTOR_DIM = 1536 \nDISTANCE_METRIC = \"COSINE\"   \n# Helper functions\ndef json_gpt(input: str):\n    completion = openai.ChatCompletion.create(\n        model=GPT_MODEL,\n        messages=[\n            {\"role\": \"system\", \"content\": \"Output only valid JSON\"},",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "INDEX_NAME",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "INDEX_NAME = \"IranNewsOnline\"\nVECTOR_DIM = 1536 \nDISTANCE_METRIC = \"COSINE\"   \n# Helper functions\ndef json_gpt(input: str):\n    completion = openai.ChatCompletion.create(\n        model=GPT_MODEL,\n        messages=[\n            {\"role\": \"system\", \"content\": \"Output only valid JSON\"},\n            {\"role\": \"user\", \"content\": input},",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "VECTOR_DIM",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "VECTOR_DIM = 1536 \nDISTANCE_METRIC = \"COSINE\"   \n# Helper functions\ndef json_gpt(input: str):\n    completion = openai.ChatCompletion.create(\n        model=GPT_MODEL,\n        messages=[\n            {\"role\": \"system\", \"content\": \"Output only valid JSON\"},\n            {\"role\": \"user\", \"content\": input},\n        ],",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "DISTANCE_METRIC",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "DISTANCE_METRIC = \"COSINE\"   \n# Helper functions\ndef json_gpt(input: str):\n    completion = openai.ChatCompletion.create(\n        model=GPT_MODEL,\n        messages=[\n            {\"role\": \"system\", \"content\": \"Output only valid JSON\"},\n            {\"role\": \"user\", \"content\": input},\n        ],\n        temperature=0.5,",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "queries",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "queries = ['Iran news',\n    'Iran current events',\n    'Iran politics',\n    'Iran economy',\n    'Iran culture',\n    'Iran history',\n    'Iran sanctions',\n    'Iran nuclear deal',\n    'Iran-US relations',\n    'Iran-China relations',",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "articles",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "articles = []\nheaders = {\"Authorization\": newsapi_key}\nfor i, query in enumerate(queries):\n    params = {\"q\": query, \"language\": language, \"pageSize\": 20}  # NewApi使用‘pageSize'而不是'count'，表示每页返回的结果数\n    # should use try here, however not doing so for simplicity for now\n    response = requests.get(newsapi_endpoint, headers=headers, params=params)\n    response.raise_for_status()\n    search_results = response.json()\n    articles.extend(search_results[\"articles\"])  # 使用 extend 来添加列表元素, BingSearchAPI中的value参数相当于NewsAPI中的articles\n    logging.info(f\"{i + 1} of {len(queries)} queries have been responsed. {len(articles)} articles have been collected.\")",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "headers",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "headers = {\"Authorization\": newsapi_key}\nfor i, query in enumerate(queries):\n    params = {\"q\": query, \"language\": language, \"pageSize\": 20}  # NewApi使用‘pageSize'而不是'count'，表示每页返回的结果数\n    # should use try here, however not doing so for simplicity for now\n    response = requests.get(newsapi_endpoint, headers=headers, params=params)\n    response.raise_for_status()\n    search_results = response.json()\n    articles.extend(search_results[\"articles\"])  # 使用 extend 来添加列表元素, BingSearchAPI中的value参数相当于NewsAPI中的articles\n    logging.info(f\"{i + 1} of {len(queries)} queries have been responsed. {len(articles)} articles have been collected.\")\n# remove duplicates",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "articles",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "articles = list({article[\"url\"]: article for article in articles}.values())\nlogging.info(f\"{len(articles)} articles after deduplication.\")\n# Prepare to connect to Redis\nredis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set\nredis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# define RediSearch vector fields to use FLAT index\nembedding = VectorField(\"embedding\",",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "redis_host",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "redis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set\nredis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# define RediSearch vector fields to use FLAT index\nembedding = VectorField(\"embedding\",\n    \"FLAT\", {\n        \"TYPE\": \"FLOAT32\",\n        \"DIM\": VECTOR_DIM,",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "redis_port",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "redis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# define RediSearch vector fields to use FLAT index\nembedding = VectorField(\"embedding\",\n    \"FLAT\", {\n        \"TYPE\": \"FLOAT32\",\n        \"DIM\": VECTOR_DIM,\n        \"DISTANCE_METRIC\": DISTANCE_METRIC",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "redis_db",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "redis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# define RediSearch vector fields to use FLAT index\nembedding = VectorField(\"embedding\",\n    \"FLAT\", {\n        \"TYPE\": \"FLOAT32\",\n        \"DIM\": VECTOR_DIM,\n        \"DISTANCE_METRIC\": DISTANCE_METRIC\n    }",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "r",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# define RediSearch vector fields to use FLAT index\nembedding = VectorField(\"embedding\",\n    \"FLAT\", {\n        \"TYPE\": \"FLOAT32\",\n        \"DIM\": VECTOR_DIM,\n        \"DISTANCE_METRIC\": DISTANCE_METRIC\n    }\n)\n# Define RediSearch fields for each of the columns in the dataset",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "embedding",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "embedding = VectorField(\"embedding\",\n    \"FLAT\", {\n        \"TYPE\": \"FLOAT32\",\n        \"DIM\": VECTOR_DIM,\n        \"DISTANCE_METRIC\": DISTANCE_METRIC\n    }\n)\n# Define RediSearch fields for each of the columns in the dataset\n# This is where you should add any additional metadata you want to capture\npublishedAt = TextField(\"publishedAt\")  # NewsAPI中\"发布日期\"参数为\"publishedAt\"",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "publishedAt",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "publishedAt = TextField(\"publishedAt\")  # NewsAPI中\"发布日期\"参数为\"publishedAt\"\ntimeStamp = NumericField(\"timeStamp\")\nurl = TextField(\"url\")\ndescription = TextField(\"description\")\nfeilds = [publishedAt, timeStamp, url, description, embedding]\n# Update the whole index including documents\nindexDefinition = IndexDefinition(prefix=[INDEX_NAME], index_type=IndexType.HASH)\ntry:\n    r.ft(INDEX_NAME).dropindex(delete_documents=True)\nexcept Exception as e:",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "timeStamp",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "timeStamp = NumericField(\"timeStamp\")\nurl = TextField(\"url\")\ndescription = TextField(\"description\")\nfeilds = [publishedAt, timeStamp, url, description, embedding]\n# Update the whole index including documents\nindexDefinition = IndexDefinition(prefix=[INDEX_NAME], index_type=IndexType.HASH)\ntry:\n    r.ft(INDEX_NAME).dropindex(delete_documents=True)\nexcept Exception as e:\n    logging.error(f\"Error when deleting index from Redis: {e}\")",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "url",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "url = TextField(\"url\")\ndescription = TextField(\"description\")\nfeilds = [publishedAt, timeStamp, url, description, embedding]\n# Update the whole index including documents\nindexDefinition = IndexDefinition(prefix=[INDEX_NAME], index_type=IndexType.HASH)\ntry:\n    r.ft(INDEX_NAME).dropindex(delete_documents=True)\nexcept Exception as e:\n    logging.error(f\"Error when deleting index from Redis: {e}\")\ntry:",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "description",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "description = TextField(\"description\")\nfeilds = [publishedAt, timeStamp, url, description, embedding]\n# Update the whole index including documents\nindexDefinition = IndexDefinition(prefix=[INDEX_NAME], index_type=IndexType.HASH)\ntry:\n    r.ft(INDEX_NAME).dropindex(delete_documents=True)\nexcept Exception as e:\n    logging.error(f\"Error when deleting index from Redis: {e}\")\ntry:\n    r.ft(INDEX_NAME).create_index(fields=feilds, definition=indexDefinition)",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "feilds",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "feilds = [publishedAt, timeStamp, url, description, embedding]\n# Update the whole index including documents\nindexDefinition = IndexDefinition(prefix=[INDEX_NAME], index_type=IndexType.HASH)\ntry:\n    r.ft(INDEX_NAME).dropindex(delete_documents=True)\nexcept Exception as e:\n    logging.error(f\"Error when deleting index from Redis: {e}\")\ntry:\n    r.ft(INDEX_NAME).create_index(fields=feilds, definition=indexDefinition)\nexcept Exception as e:",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "indexDefinition",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "indexDefinition = IndexDefinition(prefix=[INDEX_NAME], index_type=IndexType.HASH)\ntry:\n    r.ft(INDEX_NAME).dropindex(delete_documents=True)\nexcept Exception as e:\n    logging.error(f\"Error when deleting index from Redis: {e}\")\ntry:\n    r.ft(INDEX_NAME).create_index(fields=feilds, definition=indexDefinition)\nexcept Exception as e:\n    raise(e)\nlogging.info(f\"RediSearch index {INDEX_NAME} has been created/updated.\")",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "indexes",
+        "kind": 5,
+        "importPath": "data_prepare",
+        "description": "data_prepare",
+        "peekOfCode": "indexes = r.execute_command(f'KEYS {INDEX_NAME}:*')\nlogging.info(f\"{len(indexes)} articles have been added to RediSearch index {INDEX_NAME}.\")\n# Test search\n# test_question = \"最新局势如何？\"\n# query_embedding = openai.Embedding.create(input=test_question, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n# query_vec = np.array(query_embedding).astype(np.float32).tobytes()\n# # Prepare the query\n# query_base = (Query(\"*=>[KNN 20 @embedding $vec as score]\").sort_by(\"timeStamp\", asc=False).paging(0, 20).return_fields(\"score\", \"url\", \"datePublished\", \"description\").dialect(2))\n# query_param = {\"vec\": query_vec}\n# query_results = r.ft(INDEX_NAME).search(query_base, query_param).docs",
+        "detail": "data_prepare",
+        "documentation": {}
+    },
+    {
+        "label": "SessionInfoAdapter",
+        "kind": 6,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "class SessionInfoAdapter(logging.LoggerAdapter):\n    def process(self, msg, kwargs):\n        return f\"{self.extra['remote_ip']} - {self.extra['session_id']} - {msg}\", kwargs\n# Set up logging\nlogging.basicConfig(level=logging.INFO,\n                    format='%(asctime)s - %(levelname)s - %(message)s',\n                    datefmt='%Y-%m-%d %H:%M:%S')\nsession_info = get_session_info()\nlogger = SessionInfoAdapter(logging.getLogger(), session_info)\n# The streamlit script starts here",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "topic_correlation",
+        "kind": 2,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "def topic_correlation(query, topic=TOPIC):\n    \"\"\"Calculate the correlation between the query and the topic.\"\"\"\n    try:\n        query_embedding = openai.Embedding.create(input=query, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        topic_embedding = openai.Embedding.create(input=topic, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        return np.dot(query_embedding, topic_embedding)\n    except Exception as e:\n        logging.error(f\"Error calculating correlation: {e}\")\n        return 0\ndef get_session_info():",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "get_session_info",
+        "kind": 2,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "def get_session_info():\n    \"\"\"Get the session id and the remote ip.\"\"\"\n    try:\n        ctx = get_script_run_ctx()\n        if ctx is None:\n            return {'session_id': 'unknown', 'remote_ip': 'unknown'}\n        session_info = runtime.get_instance().get_client(ctx.session_id)\n        if session_info is None:\n            return {'session_id': 'unknown', 'remote_ip': 'unknown'}\n    except Exception as e:",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "GPT_MODEL",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "GPT_MODEL = \"gpt-4\"\nVECTOR_DIM = 1536 \nDISTANCE_METRIC = \"COSINE\"  \nINDEX_NAME = \"IranNewsOnline\"\nTOPIC = \"伊朗 Iran\"\ndef topic_correlation(query, topic=TOPIC):\n    \"\"\"Calculate the correlation between the query and the topic.\"\"\"\n    try:\n        query_embedding = openai.Embedding.create(input=query, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        topic_embedding = openai.Embedding.create(input=topic, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "VECTOR_DIM",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "VECTOR_DIM = 1536 \nDISTANCE_METRIC = \"COSINE\"  \nINDEX_NAME = \"IranNewsOnline\"\nTOPIC = \"伊朗 Iran\"\ndef topic_correlation(query, topic=TOPIC):\n    \"\"\"Calculate the correlation between the query and the topic.\"\"\"\n    try:\n        query_embedding = openai.Embedding.create(input=query, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        topic_embedding = openai.Embedding.create(input=topic, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        return np.dot(query_embedding, topic_embedding)",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "DISTANCE_METRIC",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "DISTANCE_METRIC = \"COSINE\"  \nINDEX_NAME = \"IranNewsOnline\"\nTOPIC = \"伊朗 Iran\"\ndef topic_correlation(query, topic=TOPIC):\n    \"\"\"Calculate the correlation between the query and the topic.\"\"\"\n    try:\n        query_embedding = openai.Embedding.create(input=query, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        topic_embedding = openai.Embedding.create(input=topic, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        return np.dot(query_embedding, topic_embedding)\n    except Exception as e:",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "INDEX_NAME",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "INDEX_NAME = \"IranNewsOnline\"\nTOPIC = \"伊朗 Iran\"\ndef topic_correlation(query, topic=TOPIC):\n    \"\"\"Calculate the correlation between the query and the topic.\"\"\"\n    try:\n        query_embedding = openai.Embedding.create(input=query, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        topic_embedding = openai.Embedding.create(input=topic, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        return np.dot(query_embedding, topic_embedding)\n    except Exception as e:\n        logging.error(f\"Error calculating correlation: {e}\")",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "TOPIC",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "TOPIC = \"伊朗 Iran\"\ndef topic_correlation(query, topic=TOPIC):\n    \"\"\"Calculate the correlation between the query and the topic.\"\"\"\n    try:\n        query_embedding = openai.Embedding.create(input=query, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        topic_embedding = openai.Embedding.create(input=topic, model=\"text-embedding-ada-002\")[\"data\"][0][\"embedding\"]\n        return np.dot(query_embedding, topic_embedding)\n    except Exception as e:\n        logging.error(f\"Error calculating correlation: {e}\")\n        return 0",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "session_info",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "session_info = get_session_info()\nlogger = SessionInfoAdapter(logging.getLogger(), session_info)\n# The streamlit script starts here\nlogger.info(\"Starting Streamlit script ...\")\n# Prepare to connect to Redis\nredis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set\nredis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "logger = SessionInfoAdapter(logging.getLogger(), session_info)\n# The streamlit script starts here\nlogger.info(\"Starting Streamlit script ...\")\n# Prepare to connect to Redis\nredis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set\nredis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# 查找最新的消息",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "redis_host",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "redis_host = os.getenv('REDIS_HOST', 'localhost')  # default to 'localhost' if not set\nredis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# 查找最新的消息\nquery_latest = Query(\"*\").sort_by(\"timeStamp\", asc=False).return_fields(\"publishedAt\").paging(0, 1)  #paging(0, 1)限制返回一条记录\ntry:\n    latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]\n    # latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%S')  # 待修改，若采用上述的格式，还得用一个函数进行转换",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "redis_port",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "redis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set\nredis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# 查找最新的消息\nquery_latest = Query(\"*\").sort_by(\"timeStamp\", asc=False).return_fields(\"publishedAt\").paging(0, 1)  #paging(0, 1)限制返回一条记录\ntry:\n    latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]\n    # latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%S')  # 待修改，若采用上述的格式，还得用一个函数进行转换\n    latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%SZ')",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "redis_db",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "redis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db\n # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors\nr = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# 查找最新的消息\nquery_latest = Query(\"*\").sort_by(\"timeStamp\", asc=False).return_fields(\"publishedAt\").paging(0, 1)  #paging(0, 1)限制返回一条记录\ntry:\n    latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]\n    # latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%S')  # 待修改，若采用上述的格式，还得用一个函数进行转换\n    latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%SZ')\n    latest_date = latest_date + timedelta(hours=8) # Convert to Beijing time",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "r",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)\n# 查找最新的消息\nquery_latest = Query(\"*\").sort_by(\"timeStamp\", asc=False).return_fields(\"publishedAt\").paging(0, 1)  #paging(0, 1)限制返回一条记录\ntry:\n    latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]\n    # latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%S')  # 待修改，若采用上述的格式，还得用一个函数进行转换\n    latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%SZ')\n    latest_date = latest_date + timedelta(hours=8) # Convert to Beijing time\n    latest_date = latest_date.strftime(\"%Y-%m-%d %H:%M\")\nexcept Exception as e:",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "query_latest",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "query_latest = Query(\"*\").sort_by(\"timeStamp\", asc=False).return_fields(\"publishedAt\").paging(0, 1)  #paging(0, 1)限制返回一条记录\ntry:\n    latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]\n    # latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%S')  # 待修改，若采用上述的格式，还得用一个函数进行转换\n    latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%SZ')\n    latest_date = latest_date + timedelta(hours=8) # Convert to Beijing time\n    latest_date = latest_date.strftime(\"%Y-%m-%d %H:%M\")\nexcept Exception as e:\n    logger.error(f\"Error querying Reids: {e}\")\n    st.error(\"无法从数据库中获取数据，这很可能是系统故障导致，请联系我的主人。\")",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "n_docs_in_index",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "n_docs_in_index = r.ft(INDEX_NAME).info()[\"num_docs\"]\nst.set_page_config(\n    page_title=\"一个关注伊朗局势的AI\",\n    page_icon=\"💥\",\n)\n# st.subheader(\"巴以动态全知道\") \nst.write(f\"\"\"\n    我是一个关注伊朗局势的AI，我的信息来源是**NewsAPI**新闻搜索，欢迎向我提问或和我讨论。\n    我会隔一段时间根据互联网上的消息分析伊朗的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。\n    我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com",
+        "detail": "streamlit_app",
+        "documentation": {}
+    },
+    {
+        "label": "openai_api_key",
+        "kind": 5,
+        "importPath": "streamlit_app",
+        "description": "streamlit_app",
+        "peekOfCode": "openai_api_key = os.getenv(\"OPENAI_API_KEY\")\nif not openai_api_key:\n    logger.error(\"KEY is not set.\")\n    st.error('KEY未设置，请联系我的主人。')\n    st.stop() \nelse:\n    openai.api_key = openai_api_key\n# User-provided prompt\nif user_prompt := st.chat_input('在此输入您的问题'):\n    user_prompt_topic_corr = topic_correlation(user_prompt)",
+        "detail": "streamlit_app",
+        "documentation": {}
+    }
+]

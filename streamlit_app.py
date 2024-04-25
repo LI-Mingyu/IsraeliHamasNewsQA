@@ -12,15 +12,14 @@ from datetime import date, datetime, timedelta
 # Caution: this function is implemented in a hacky way and may break in the future
 from streamlit import runtime
 from streamlit.runtime.scriptrunner import get_script_run_ctx
-from streamlit_app import TOPIC
+
 
 GPT_MODEL = "gpt-4"
 VECTOR_DIM = 1536 
 DISTANCE_METRIC = "COSINE"  
-# INDEX_NAME = "IsraelHamasNewsOnline"
+
 INDEX_NAME = "IranNewsOnline"
 
-# TOPIC = "以色列 哈马斯 冲突 伤亡 巴勒斯坦 中东 2023 Israel Hamas conflict casualties Palestinian Middle East"
 TOPIC = "伊朗 Iran"
 def topic_correlation(query, topic=TOPIC):
     """Calculate the correlation between the query and the topic."""
@@ -68,10 +67,12 @@ redis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch o
  # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors
 r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)
 # 查找最新的消息
-query_latest = Query("*").sort_by("timeStamp", asc=False).return_fields("datePublished").paging(0, 1)  #paging(0, 1)限制返回一条记录
+query_latest = Query("*").sort_by("timeStamp", asc=False).return_fields("publishedAt").paging(0, 1)  #paging(0, 1)限制返回一条记录
+
 try:
     latest_search_result = r.ft(INDEX_NAME).search(query_latest).docs[0]
-    latest_date = datetime.strptime(latest_search_result.datePublished[:-2]+"Z", '%Y-%m-%dT%H:%M:%S.%fZ')
+    # latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%S')  # 待修改，若采用上述的格式，还得用一个函数进行转换
+    latest_date = datetime.strptime(latest_search_result.publishedAt, '%Y-%m-%dT%H:%M:%SZ')
     latest_date = latest_date + timedelta(hours=8) # Convert to Beijing time
     latest_date = latest_date.strftime("%Y-%m-%d %H:%M")
 except Exception as e:
@@ -81,23 +82,16 @@ except Exception as e:
 n_docs_in_index = r.ft(INDEX_NAME).info()["num_docs"]
 
 st.set_page_config(
-    # page_title="一个关注巴以局势的AI",
     page_title="一个关注伊朗局势的AI",
     page_icon="💥",
 )
-# st.subheader("巴以动态全知道")  # 源码已经注释了
+# st.subheader("巴以动态全知道") 
 
-# st.write(f"""
-#     我是一个关注巴以局势的AI，我的信息来源是**微软Bing**新闻搜索，欢迎向我提问或和我讨论。
 
-#     我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
-    
-#     我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com
-# """)
 st.write(f"""
     我是一个关注伊朗局势的AI，我的信息来源是**NewsAPI**新闻搜索，欢迎向我提问或和我讨论。
 
-    我会隔一段时间根据互联网上的消息分析巴以冲突的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
+    我会隔一段时间根据互联网上的消息分析伊朗的最新形势，我的数据最后一次更新于北京时间**{latest_date}**。在这次数据更新中，我搜索并阅读了**{n_docs_in_index}**条新闻。
     
     我还在学习中，如果你觉得我的回答有任何错误或不妥，请联系我的主人：mingyu.li.cn@gmail.com
 """)
@@ -134,19 +128,14 @@ if user_prompt := st.chat_input('在此输入您的问题'):
         st.session_state.messages.append({"role": "user", "content": user_prompt})
     with st.chat_message("assistant"):
         with st.spinner("人工智能正在思考..."):
-#             QUERY_GEN_PROMPT = f"""
-# Generate a brief query based on the chat history given the backdrop of recent Israeli-Hamas conflict began on Oct. 7, 2023.
-# This query will be used to search the answer to the user's question.
-# Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to include dates in the query.
-# """
+
             QUERY_GEN_PROMPT = f"""
-Generate a brief query based on the chat history given the backdrop of recent Iran began on Oct. 7, 2023.
+Generate a brief query based on the chat history given the backdrop of recent Iran began on Apr. 1, 2024.
 This query will be used to search the answer to the user's question.
 Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to include dates in the query.
 """
             st.session_state.messages.append({"role": "system", "content": QUERY_GEN_PROMPT})
             try:
-                # r.incr("IsraelHamasNewsOnline:n_asked") # Count how many questions are asked
                 r.incr("IranNewsOnline:n_asked") # Count how many questions are asked
                 gpt_response = openai.ChatCompletion.create(
                         model=GPT_MODEL,
@@ -165,12 +154,12 @@ Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to inc
                 query_embedding = openai.Embedding.create(input=generated_query, model="text-embedding-ada-002")["data"][0]["embedding"]
                 query_vec = np.array(query_embedding).astype(np.float32).tobytes()
                 # Prepare the query
-                query_base = (Query("*=>[KNN 20 @embedding $vec as score]").sort_by("timeStamp", asc=False).paging(0, 20).return_fields("score", "url", "datePublished", "description").dialect(2))
+                query_base = (Query("*=>[KNN 20 @embedding $vec as score]").sort_by("timeStamp", asc=False).paging(0, 20).return_fields("score", "url", "publishedAt", "description").dialect(2))
                 query_param = {"vec": query_vec}
                 query_results = r.ft(INDEX_NAME).search(query_base, query_param).docs
                 formatted_result = ""
                 for query_result in query_results:
-                    formatted_result += f"URL: {query_result['url']}\nDate: {query_result['datePublished']}\nContent: {query_result['description']}\n\n"
+                    formatted_result += f"URL: {query_result['url']}\nDate: {query_result['publishedAt']}\nContent: {query_result['description']}\n\n"
             except Exception as e:
                 logger.error(f"Error querying Reids with embedding: {e}")
                 st.error("无法搜索答案，这很可能是系统故障导致，请联系我的主人。")
@@ -198,7 +187,6 @@ Today is {date.today().strftime("%A, %B %d, %Y")}. You can decide whether to inc
                         collected_resp_content += chunk['choices'][0]['delta']['content']
                         resp_display.write(collected_resp_content)
                 # Count how many answeres are generated
-                # r.incr("IsraelHamasNewsOnline:n_answered")
                 r.incr("IranNewsOnline:n_answered")
             except Exception as e:
                 logger.error(f"Error generating response from OpenAI: {e}")
