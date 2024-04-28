@@ -194,5 +194,5 @@ logging.info(f"{len(indexes)} articles have been added to RediSearch index {INDE
 
 # 用于测试
 # for article in articles:
-#     print(publishedAt, url, description)
+#     print(article["publishedAt"], article["url"], article["description"])
 #     print()

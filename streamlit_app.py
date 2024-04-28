@@ -66,6 +66,15 @@ redis_port = os.getenv('REDIS_PORT', '6379')  # default to '6379' if not set
 redis_db = os.getenv('REDIS_DB', '0')  # default to '0' if not set. RediSearch only operates on the default (0) db
  # Instantiates a Redis client. decode_responses=False to avoid decoding the returned embedding vectors
 r = Redis(host=redis_host, port=redis_port, db=redis_db, decode_responses=False)
+
+# 检测是否连接到Redis数据库
+try:
+    r = Redis(host='localhost', port=6379, db=0)
+except Exception as e:
+    logger.error(f"Redis connection failed: {e}")
+    st.error("无法连接到Redis数据库。")
+    st.stop()
+
 # 查找最新的消息
 query_latest = Query("*").sort_by("timeStamp", asc=False).return_fields("publishedAt").paging(0, 1)  #paging(0, 1)限制返回一条记录
 
